@@ -72,21 +72,35 @@ Unzip and open the main folder with terminal. Depending on the algorithm you wan
 >> python3 run.py 'algo_name' 
 
 *Algo_name  may be :
+
  *svm_l2 -->linear SVM with parameter l2.
+
  *svm_l1 -->linear SVM with parameter l1.
+
  *logistic --> Logistic regression
+
  *ridge --> Ridge regression
+
  *multinomial --> Multinomial Naive Bayes
+
  *bernoulli --> Bernouli Naive Bayes
+
  *voting  --> Voting classfier(SVM+logistic+ridge).
+
 
 *For Neural network algorithms 'algo_name' may be:
 
+
  *cnn_gru --> Convolutional Neural Network with Gated Recurrent Unit
+
  *lstm --> Long Short-Term Memory Network
+
  *cnn_lstm --> Convolutional Neural Network with a Long Short-Term Memory Network
+
  *bidir_gru --> Neural Network with Bidirectional Gated Recurrent Unit
+
  *embeddings --> Neural Network based on the word embeddings of a word2vec model
+ 
 
  WHen the command is executed a sumbission file will be created under the name submission.csv.
 
