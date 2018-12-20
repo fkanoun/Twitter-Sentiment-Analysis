@@ -1,56 +1,116 @@
-# Project Text Sentiment Classification
+# Twitter Sentiment Analysis
 
-The task of this competition is to predict if a tweet message used to contain a positive :) or negative :( smiley, by considering only the remaining text.
-
-As a baseline, we here provide sample code using word embeddings to build a text classifier system.
-
-Submission system environment setup:
-
-1. The dataset is available from the Kaggle page, as linked in the PDF project description
-
- Download the provided datasets `twitter-datasets.zip`.
-
-2. To submit your solution to the online evaluation system, we require you to prepare a “.csv” file of the same structure as sampleSubmission.csv (the order of the predictions does not matter, but make sure the tweet ids and predictions match). Your submission is evaluated according to the classification error (number of misclassified tweets) of your predictions.
-
-*Working with Twitter data:* We provide a large set of training tweets, one tweet per line. All tweets in the file train pos.txt (and the train pos full.txt counterpart) used to have positive smileys, those of train neg.txt used to have a negative smiley. Additionally, the file test data.txt contains 10’000 tweets without any labels, each line numbered by the tweet-id.
-
-Your task is to predict the labels of these tweets, and upload the predictions to kaggle. Your submission file for the 10’000 tweets must be of the form `<tweet-id>`, `<prediction>`, see `sampleSubmission.csv`.
-
-Note that all tweets have already been pre-processed so that all words (tokens) are separated by a single whitespace. Also, the smileys (labels) have been removed.
-
-## Classification using Word-Vectors
-
-For building a good text classifier, it is crucial to find a good feature representation of the input text. Here we will start by using the word vectors (word embeddings) of each word in the given tweet. For simplicity of a first baseline, we will construct the feature representation of the entire text by simply averaging the word vectors.
-
-Below is a solution pipeline with an evaluation step:
-
-### Generating Word Embeddings: 
-
-Load the training tweets given in `pos_train.txt`, `neg_train.txt` (or a suitable subset depending on RAM requirements), and construct a a vocabulary list of words appearing at least 5 times. This is done running the following commands. Note that the provided `cooc.py` script can take a few minutes to run, and displays the number of tweets processed.
-
-```bash
-build_vocab.sh
-cut_vocab.sh
-python3 pickle_vocab.py
-python3 cooc.py
-```
+With faster and more powerful processors, Machine learning\cite{ML} has become very important and offers useful tools and techniques to deal with a lot of problems in almost every scientific field.
+  Classification is perhaps one of the most useful tools in machine learning in order to resolve a tremendous number of real world applications. From classifying skin cancers to Amazon reviews, computer scientists are aiming to improve the different algorithms put in place in order to have better prediction while reducing computational costs.
+  Our aim in this paper is to present the different paths one can explore in order to predict the sentiment from a corpus of text.
 
 
-Now given the co-occurrence matrix and the vocabulary, it is not hard to train GloVe word embeddings, that is to compute an embedding vector for wach word in the vocabulary. We suggest to implement SGD updates to train the matrix factorization, as in
+## Dependencies
 
-```glove_solution.py```
+In order to run the project you will need the following dependencies installed:
 
-Once you tested your system on the small set of 10% of all tweets, we suggest you run on the full datasets `pos_train_full.txt`, `neg_train_full.txt`
+### Libraries
 
-### Building a Text Classifier:
+* [Anaconda3] - Download and install Anaconda with python3
+* [Scikit-Learn] - Download scikit-learn library with conda
 
-1. Construct Features for the Training Texts: Load the training tweets and the built GloVe word embeddings. Using the word embeddings, construct a feature representation of each training tweet (by averaging the word vectors over all words of the tweet).
+    ```sh
+    $ conda install scikit-learn
+    ```
 
-2. Train a Linear Classifier: Train a linear classifier (e.g. logistic regression or SVM) on your constructed features, using the scikit learn library, or your own code from the earlier labs. Recall that the labels indicate if a tweet used to contain a :) or :( smiley.
+* [Gensim] - Install Gensim library 
 
-3. Prediction: Predict labels for all tweets in the test set.
+    ```sh
+    $ conda install gensim
+    ```
+    
+* [NLTK] - Download all packages of NLTK
 
-4. Submission / Evaluation: Submit your predictions to kaggle, and verify the obtained misclassification error score. (You can also use a local separate validation set to get faster feedback on the accuracy of your system). Try to tune your system for best evaluation score.
+    ```sh
+    $ python
+    $ >>> import nltk
+    $ >>> nltk.download()
+    ```
 
-## Extensions:
-Naturally, there are many ways to improve your solution, both in terms of accuracy and computation speed. More advanced techniques can be found in the recent literature.
+* [GloVe] - Install Glove python implementation
+
+    ```sh
+    $ pip install glove_python
+    ```
+* [keras] - Install keras library
+
+    ```sh
+    $ pip install keras
+    ```
+    (Recommended version **tensorflow 0.12.0**)
+* [ekphrasis] - Install ekphrasis library
+
+    ```sh
+    $ pip install ekphrasis
+    ```
+
+
+
+### Files
+* Data
+	Link from our professors: https://www.crowdai.org/challenges/epfl-ml-text-classification/dataset_files.
+
+   
+
+* Preprocessed Tweet Files used for word2vec training.
+
+    In case you want to avoid preprocessing execution time, you can download the [preprocessed train tweets](https://down.uploadfiles.io/get/sm25c)
+    
+* Pretrained Word Embeddings 
+    
+    In case you want to avoid training from scratch the whole word embeddings matrix, you can download the [glove_python](https://storage.googleapis.com/kaggle-datasets/8560/11981/glove.twitter.27B.50d.txt.zip?GoogleAccessId=web-data@kaggle-161607.iam.gserviceaccount.com&Expires=1545508577&Signature=hz8oe4Wa%2Fj%2FteWP4go5ttJle8oeVQpcZfy%2BVfrMETizFMlMcS%2F7TT86TAAQSyOg%2BRvXfTMGs0yN%2Bid1k2DtLyRiYKXrGmpxKEChrmsSabyT7YOCzZiy1bdVyE87833AvaQ30DpopUWi%2B4FbizY185fwYHNC07%2BVsDHFTBsI8yqNTtA6RdAcK%2BHLPEMcBRJZeLz%2BRT8mdvw%2FZzJ2uAbsTTnUzwnHYIDZuy27inV%2BX6Rsyv%2BUMvRDBrPjYhvxEBFWrCErLe%2BC15NH3nXk9vT3R8rXck1YZBhjcExFBPHADScAWgE6%2FESIGLBZ77HQ4WOiusqLg5fOi%2FHg1tOHY7sr2jg%3D%3D)
+
+* Our trainded Word2Vec Embeddings model
+	https://drive.google.com/file/d/18W-hB4ko0f7rfQ29uMs9h1HEzleNotok/view?fbclid=IwAR1yl0vqgy9X3Z41QigwyMKGkaqrIE7C8GG9bxyhET0kR8gY5adIiFUf7cs
+
+
+## CrowdAI Submission
+
+See the [Public Leaderboard](https://inclass.kaggle.com/c/epfml-text/leaderboard) in Kaggle.
+
+Our Team's name is **gLove is in the air...**♩ ♪ ♫ ♬:heart:
+
+## Demo
+
+
+Unzip and open the main folder with terminal. Depending on the algorithm you want to test. Run :
+
+>> python3 run.py 'algo_name' 
+
+algo_name  may be :
+ svm_l2 -->linear SVM with parameter l2.
+ svm_l1 -->inear SVM with parameter l1.
+ logistic --> Logistic regression
+ ridge --> Ridge regression
+ multinomial --> Multinomial Naive Bayes
+ bernoulli --> Bernouli Naive Bayes
+ voting  --> Voting classfier(SVM+logistic+ridge).
+
+For Neural network algorithms 'algo_name' may be:
+
+ cnn_gru --> Convolutional Neural Network with Gated Recurrent Unit
+ lstm --> Long Short-Term Memory Network
+ cnn_lstm --> Convolutional Neural Network with a Long Short-Term Memory Network
+ bidir_gru --> Neural Network with Bidirectional Gated Recurrent Unit
+ embeddings --> Neural Network based on the word embeddings of a word2vec model
+
+ After you run a sumbission file will be created under the name submission.csv.
+
+-> To reprocuce our best score run 
+>> python3 run.py cnn_gru
+
+### Contributors
+
+- Sami Ben Hassen
+- Firas Kanoun
+- Ali Fessi
+
+
+___
+
+License: [MIT](https://opensource.org/licenses/MIT)
