@@ -11,7 +11,6 @@ In order to run the project you will need the following dependencies installed:
 
 ### Libraries
 
-* [Anaconda3] - Download and install Anaconda with python3
 * [Scikit-Learn] - Download scikit-learn library with conda
 
     ```sh
@@ -32,8 +31,7 @@ In order to run the project you will need the following dependencies installed:
     $ >>> nltk.download()
     ```
 
-* [GloVe] - Install Glove python implementation
-
+* [GloVe] - Install Glove python 
     ```sh
     $ pip install glove_python
     ```
@@ -42,7 +40,6 @@ In order to run the project you will need the following dependencies installed:
     ```sh
     $ pip install keras
     ```
-    (Recommended version **tensorflow 0.12.0**)
 * [ekphrasis] - Install ekphrasis library
 
     ```sh
@@ -74,26 +71,26 @@ Unzip and open the main folder with terminal. Depending on the algorithm you wan
 
 >> python3 run.py 'algo_name' 
 
-algo_name  may be :
- svm_l2 -->linear SVM with parameter l2.
- svm_l1 -->inear SVM with parameter l1.
- logistic --> Logistic regression
- ridge --> Ridge regression
- multinomial --> Multinomial Naive Bayes
- bernoulli --> Bernouli Naive Bayes
- voting  --> Voting classfier(SVM+logistic+ridge).
+*Algo_name  may be :
+ *svm_l2 -->linear SVM with parameter l2.
+ *svm_l1 -->linear SVM with parameter l1.
+ *logistic --> Logistic regression
+ *ridge --> Ridge regression
+ *multinomial --> Multinomial Naive Bayes
+ *bernoulli --> Bernouli Naive Bayes
+ *voting  --> Voting classfier(SVM+logistic+ridge).
 
-For Neural network algorithms 'algo_name' may be:
+*For Neural network algorithms 'algo_name' may be:
 
- cnn_gru --> Convolutional Neural Network with Gated Recurrent Unit
- lstm --> Long Short-Term Memory Network
- cnn_lstm --> Convolutional Neural Network with a Long Short-Term Memory Network
- bidir_gru --> Neural Network with Bidirectional Gated Recurrent Unit
- embeddings --> Neural Network based on the word embeddings of a word2vec model
+ *cnn_gru --> Convolutional Neural Network with Gated Recurrent Unit
+ *lstm --> Long Short-Term Memory Network
+ *cnn_lstm --> Convolutional Neural Network with a Long Short-Term Memory Network
+ *bidir_gru --> Neural Network with Bidirectional Gated Recurrent Unit
+ *embeddings --> Neural Network based on the word embeddings of a word2vec model
 
- After you run a sumbission file will be created under the name submission.csv.
+ WHen the command is executed a sumbission file will be created under the name submission.csv.
 
--> To reprocuce our best score run 
+* To reprocuce our best score run 
 >> python3 run.py cnn_gru
 
 ### Contributors
@@ -102,7 +99,3 @@ For Neural network algorithms 'algo_name' may be:
 - Firas Kanoun
 - Ali Fessi
 
-
-___
-
-License: [MIT](https://opensource.org/licenses/MIT)
