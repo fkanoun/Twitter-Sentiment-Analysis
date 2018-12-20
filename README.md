@@ -67,14 +67,6 @@ In order to run the project you will need the following dependencies installed:
 
 * Our trainded Word2Vec Embeddings model
 	https://drive.google.com/file/d/18W-hB4ko0f7rfQ29uMs9h1HEzleNotok/view?fbclid=IwAR1yl0vqgy9X3Z41QigwyMKGkaqrIE7C8GG9bxyhET0kR8gY5adIiFUf7cs
-
-
-## CrowdAI Submission
-
-See the [Public Leaderboard](https://inclass.kaggle.com/c/epfml-text/leaderboard) in Kaggle.
-
-Our Team's name is **gLove is in the air...**♩ ♪ ♫ ♬:heart:
-
 ## Demo
 
 
